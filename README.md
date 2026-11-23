@@ -1,54 +1,65 @@
 # Cermat — Cellix Relationship Management Terpadu
 
-**Cermat** adalah sistem CRM (*Customer Relationship Management*) multi-tenant yang mendukung dua mode bisnis sekaligus (**Properti / Real Estate** dan **Kantor / Jasa / Ritel**), dibangun dengan **Go (Fiber + PostgreSQL)** di backend dan **SvelteKit + Tailwind CSS** di frontend.
+Sistem CRM multi-tenant dengan dua mode bisnis (**Properti / Real Estate** dan **Kantor / Jasa / Ritel**). Backend Go + PostgreSQL, frontend SvelteKit + Tailwind CSS.
 
-## Fitur Utama
+```
+cermat/
+  backend/
+    cmd/api/              entry point dan routing
+    internal/             auth, kontak, pipeline, katalog, aktivitas, user admin
+    migrations/           migrasi SQL (001_init_multi_tenant.sql, seed_dummy.sql)
+  frontend/src/           aplikasi SvelteKit (dashboard, pipeline, kontak, katalog, aktivitas, pengguna)
+```
 
-- **Dashboard Ringkasan**: Statistik prospek, nilai pipeline aktif, kesepakatan closing (Won), dan jadwal follow-up terdekat.
-- **Sales Pipeline (Kanban & Daftar)**: Pengelolaan prospek/deal lintas tahapan secara visual (Kanban) maupun tabel daftar dengan filter sumber prospek, pencarian, dan pagination.
-- **Manajemen Kontak**: Pencatatan pelanggan/leads lengkap dengan status (`LEAD`, `PROSPECT`, `CUSTOMER`, `INACTIVE`), sumber prospek, dan riwayat deal.
-- **Katalog Dual-Mode**:
-  - Mode `PROPERTY`: Manajemen **Unit Properti / Kavling** beserta spesifikasi tipe, luas tanah/bangunan, blok, dan status ketersediaan (`AVAILABLE`, `BOOKED`, `SOLD`, `INACTIVE`).
-  - Mode `OFFICE`: Manajemen **Produk & Layanan** beserta SKU, satuan, estimasi pengerjaan, dan status.
-- **Aktivitas & Layanan**: Jadwal follow-up (`CALL`, `WHATSAPP`, `MEETING`, `SITE_VISIT`, `NOTE`) dan tiket keluhan pelanggan (`OPEN`, `IN_PROGRESS`, `RESOLVED`, `CLOSED`).
-- **Sistem Admin & Manajemen Pengguna**: Hanya `ADMIN` yang dapat membuat, mengedit, dan menghapus akun pengguna (beserta `role` dan `business_mode`).
-- **Tampilan Terang & Gelap**: Mendukung tema Terang, Gelap, dan Sistem serta panduan interaktif per halaman (*Product Tour*).
+## Fitur
+- Dashboard: statistik prospek, nilai pipeline aktif, deal Won, follow-up terdekat.
+- Sales pipeline: Kanban dan daftar (filter sumber, pencarian, pagination).
+- Kontak: status `LEAD`, `PROSPECT`, `CUSTOMER`, `INACTIVE`, sumber prospek, riwayat deal.
+- Katalog dual-mode: `PROPERTY` (unit/kavling) dan `OFFICE` (produk & layanan).
+- Aktivitas follow-up (`CALL`, `WHATSAPP`, `MEETING`, `SITE_VISIT`, `NOTE`) dan tiket keluhan.
+- Manajemen pengguna: hanya `ADMIN` yang dapat membuat, mengubah, dan menghapus akun (`role`, `business_mode`).
+- Tema Terang/Gelap/Sistem dan panduan interaktif per halaman (Driver.js).
 
-## Teknologi
+## Prasyarat
+Go 1.22+, PostgreSQL 14+, Node.js 20+.
 
-- **Backend**: Go, Fiber v2, pgx v5 (PostgreSQL), JWT, bcrypt
-- **Frontend**: SvelteKit (Svelte 5), Tailwind CSS, Lucide Icons, Driver.js
+## Setup sekali jalan
+1. Buat database: `CREATE DATABASE cermat_db;`
+2. Di `backend`: buat `.env` (lihat Konfigurasi di bawah) dan sesuaikan `DATABASE_URL`.
+3. Di `backend`: `go mod tidy`. Di `frontend`: `npm install`.
+4. Migrasi skema berjalan otomatis saat backend pertama kali dijalankan, tidak perlu menjalankan tool migrasi manual.
+5. Opsional, isi data contoh: `psql "$DATABASE_URL" -f backend/migrations/seed_dummy.sql`
 
-## Cara Menjalankan
+## Jalankan
+Gunakan dua terminal:
+- `cd backend` lalu `go run ./cmd/api` (http://localhost:8080)
+- `cd frontend` lalu `npm run dev` (http://localhost:5173)
 
-### 1. Database (PostgreSQL)
-Buat database PostgreSQL (misalnya `cermat_db`), lalu konfigurasi `backend/.env`:
+Saat pertama kali jalan, backend membuat akun Admin default jika belum ada:
+- Email: `admin@cermat.id`
+- Password: `admin123`
+
+Segera ganti password ini di lingkungan selain development.
+
+## Konfigurasi
+`backend/.env`:
 ```env
 PORT=8080
 DATABASE_URL=postgres://postgres:password@localhost:5432/cermat_db?sslmode=disable
 JWT_SECRET=ganti-dengan-secret-key-anda
 CORS_ORIGIN=*
 ```
+Untuk produksi, ganti `JWT_SECRET` dengan nilai acak yang kuat dan batasi `CORS_ORIGIN` ke domain frontend.
 
-Migrasi skema ([001_init_multi_tenant.sql](backend/migrations/001_init_multi_tenant.sql)) berjalan otomatis saat backend dijalankan. Jika ingin mengisi data contoh (opsional):
-```bash
-psql "$DATABASE_URL" -f backend/migrations/seed_dummy.sql
-```
+## Tests
+<!-- Sesuaikan jika repo punya test -->
+- `cd backend` lalu `go test ./...` menjalankan unit test.
+- Jika ada integration test, gunakan database sekali pakai (throwaway) terpisah, bukan database utama.
 
-### 2. Backend
-```bash
-cd backend
-go mod tidy
-go run ./cmd/api
-```
-Backend akan berjalan di `http://localhost:8080` dan otomatis membuat akun Admin default jika belum ada:
-- **Email**: `admin@cermat.id`
-- **Password**: `admin123`
+## Teknologi
+- Backend: Go, Fiber v2, pgx v5, JWT, bcrypt
+- Frontend: SvelteKit (Svelte 5), Tailwind CSS, Lucide Icons, Driver.js
 
-### 3. Frontend
-```bash
-cd frontend
-npm install
-npm run dev
-```
-Frontend akan berjalan di `http://localhost:5173`.
+## Produksi
+<!-- Sesuaikan jika repo punya docker-compose -->
+Jalankan `npm run build` di `frontend`, lalu sajikan hasil build lewat web server (mis. Caddy/Nginx) dan proxy `/api` ke backend. Pastikan `JWT_SECRET` dan `CORS_ORIGIN` sudah diatur untuk produksi.
