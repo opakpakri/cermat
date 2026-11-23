@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	body {
+		font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+		background-color: #FAFAF9;
+		color: #0F172A;
+	}
+}
+
+/* Global Dark Mode Surface & Text Mapping */
+html.dark body {
+	background-color: #0B1120;
+	color: #F1F5F9;
+}
+
+html.dark .bg-\[\#FAFAF9\] {
+	background-color: #0B1120 !important;
+}
+
+html.dark .bg-white {
+	background-color: #111827 !important;
+}
+
+html.dark aside .bg-white,
+html.dark nav.fixed .bg-white {
+	background-color: #FFFFFF !important;
+	color: #EA580C !important;
+}
+
+html.dark .bg-slate-50,
+html.dark .bg-slate-50\/80,
+html.dark .bg-slate-100,
+html.dark .bg-slate-100\/80,
+html.dark .bg-slate-200\/80,
+html.dark .hover\:bg-slate-50:hover,
+html.dark .hover\:bg-slate-50\/70:hover,
+html.dark .hover\:bg-slate-100:hover {
+	background-color: #1E293B !important;
+}
+
+html.dark .border-\[\#E2E8F0\],
+html.dark .border-slate-100,
+html.dark .divide-\[\#E2E8F0\] > :not([hidden]) ~ :not([hidden]) {
+	border-color: #1F2937 !important;
+}
+
+html.dark .text-\[\#0F172A\] {
+	color: #F1F5F9 !important;
+}
+
+html.dark .text-\[\#64748B\] {
+	color: #94A3B8 !important;
+}
+
+html.dark .bg-\[\#FFF7ED\] {
+	background-color: rgba(234, 88, 12, 0.18) !important;
+}
+
+html.dark .text-\[\#C2410C\] {
+	color: #FB923C !important;
+}
+
+html.dark input,
+html.dark select,
+html.dark textarea {
+	background-color: #0F172A !important;
+	color: #F1F5F9 !important;
+	border-color: #334155 !important;
+	color-scheme: dark;
+}
+
+html.dark input[readonly],
+html.dark input:disabled,
+html.dark select:disabled {
+	background-color: #1E293B !important;
+	color: #94A3B8 !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+	color: #64748B !important;
+}
+
+/* Driver.js Product Tour Styling */
+.driver-popover.cermat-driver-popover {
+	font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+	border-radius: 1rem;
+	border: 1px solid #E2E8F0;
+	padding: 1.15rem;
+	box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.15);
+	max-width: 340px;
+}
+
+.driver-popover.cermat-driver-popover .driver-popover-title {
+	font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+	font-size: 0.95rem;
+	font-weight: 800;
+	color: #0F172A;
+}
+
+.driver-popover.cermat-driver-popover .driver-popover-description {
+	font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+	font-size: 0.8rem;
+	line-height: 1.5;
+	color: #64748B;
+	margin-top: 0.35rem;
+}
+
+.driver-popover.cermat-driver-popover .driver-popover-next-btn,
+.driver-popover.cermat-driver-popover .driver-popover-done-btn {
+	background-color: #EA580C !important;
+	color: #FFFFFF !important;
+	text-shadow: none !important;
+	border: none !important;
+	border-radius: 0.65rem !important;
+	padding: 0.4rem 0.85rem !important;
+	font-size: 0.75rem !important;
+	font-weight: 700 !important;
+}
+
+.driver-popover.cermat-driver-popover .driver-popover-prev-btn {
+	border-radius: 0.65rem !important;
+	padding: 0.4rem 0.75rem !important;
+	font-size: 0.75rem !important;
+	font-weight: 600 !important;
+}
+
+html.dark .driver-popover.cermat-driver-popover {
+	background-color: #111827;
+	border-color: #1F2937;
+}
+
+html.dark .driver-popover.cermat-driver-popover .driver-popover-title {
+	color: #F1F5F9;
+}
+
+html.dark .driver-popover.cermat-driver-popover .driver-popover-description,
+html.dark .driver-popover.cermat-driver-popover .driver-popover-progress-text {
+	color: #94A3B8;
+}
