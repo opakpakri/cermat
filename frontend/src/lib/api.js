@@ -1,7 +1,8 @@
 import { get } from 'svelte/store';
 import { authStore } from '$lib/stores/authStore';
 
-const API_BASE = '/api';
+const API_ORIGIN = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
+const API_BASE = API_ORIGIN ? (API_ORIGIN.endsWith('/api') ? API_ORIGIN : `${API_ORIGIN}/api`) : '/api';
 
 export async function apiFetch(path, options = {}) {
 	const state = get(authStore);
