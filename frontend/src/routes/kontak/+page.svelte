@@ -134,6 +134,10 @@
 	onMount(loadContacts);
 </script>
 
+<svelte:head>
+	<title>Daftar Kontak — Cermat</title>
+</svelte:head>
+
 <div class="space-y-6">
 	<div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
 		<div>

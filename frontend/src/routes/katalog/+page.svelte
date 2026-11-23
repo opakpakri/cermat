@@ -132,6 +132,10 @@
 	onMount(loadItems);
 </script>
 
+<svelte:head>
+	<title>{labels.catalogMenuLabel} — Cermat</title>
+</svelte:head>
+
 <div class="space-y-6">
 	<div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
 		<div>

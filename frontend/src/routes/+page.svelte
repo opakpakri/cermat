@@ -52,6 +52,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Dashboard — Cermat</title>
+</svelte:head>
+
 <div class="space-y-6">
 	<!-- Hero Card Gradien (Oranye-Amber) -->
 	<section data-tour="dash-hero" class="rounded-2xl bg-gradient-to-r from-[#EA580C] via-[#F97316] to-[#D97706] p-6 text-white shadow-sm sm:p-8">

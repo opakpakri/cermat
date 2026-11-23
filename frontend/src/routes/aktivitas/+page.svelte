@@ -150,6 +150,10 @@
 	onMount(loadAll);
 </script>
 
+<svelte:head>
+	<title>Aktivitas & Layanan — Cermat</title>
+</svelte:head>
+
 <div class="space-y-6">
 	<div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 		<div>

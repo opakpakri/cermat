@@ -37,7 +37,7 @@
 </script>
 
 <svelte:head>
-	<title>Masuk — Cermat CRM</title>
+	<title>Masuk — Cermat</title>
 </svelte:head>
 
 <div class="min-h-screen grid lg:grid-cols-2">

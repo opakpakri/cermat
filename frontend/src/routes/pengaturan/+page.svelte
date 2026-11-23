@@ -60,6 +60,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Pengaturan — Cermat</title>
+</svelte:head>
+
 <div class="space-y-6">
 	<div>
 		<h1 class="text-2xl font-extrabold text-[#0F172A]">Pengaturan Akun & Bisnis</h1>
