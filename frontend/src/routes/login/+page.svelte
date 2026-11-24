@@ -48,7 +48,7 @@
 				<div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 backdrop-blur-xs">
 					<Sparkles class="h-5 w-5 text-white" />
 				</div>
-				<span class="text-base font-bold tracking-tight">CERMAT - Cellix Relationship Management Terpadu</span>
+				<span class="text-base font-bold tracking-tight">CERMAT - Cellix Relationship Management Penjualan</span>
 			</div>
 
 			<h1 class="text-4xl font-extrabold leading-tight tracking-tight">
@@ -81,7 +81,7 @@
 				</div>
 				<div>
 					<div class="text-xl font-extrabold leading-tight text-[#EA580C]">Cermat</div>
-					<p class="text-xs text-[#64748B]">Cellix Relationship Management</p>
+					<p class="text-xs text-[#64748B]">Cellix Relationship Management Penjualan</p>
 				</div>
 			</div>
 

@@ -66,7 +66,7 @@
 			</div>
 			<div class="min-w-0">
 				<span class="block text-base font-extrabold tracking-tight text-white">Cermat</span>
-				<span class="block truncate text-[10px] font-medium text-orange-100">Cellix Relationship Management<br>Terpadu</span>
+				<span class="block truncate text-[10px] font-medium text-orange-100">Cellix Relationship Management<br>Penjualan</span>
 			</div>
 		</a>
 	</div>
